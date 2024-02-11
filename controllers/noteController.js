@@ -67,79 +67,76 @@ export const UpdateNoteController = async (req, res) => {
   }
 };
 
-
-export const DeleteNoteController =async(req,res)=>{
+export const DeleteNoteController = async (req, res) => {
   try {
-    const {id}=req.params;
-    const deleteNote=await userNotesModel.findByIdAndDelete(id);
-    if(!deleteNote){
-      return res.status(404).send({
-          success:false,
-          message:"Note not found"
-      })
-
-    }
-    res.status(200).send({
-        success:true,
-        message:"Note deleted successfully"
-    })
-  } catch (error) {
-    console.log(error)
-    res.status(400).send({
-      success:false,
-      message:"Error while deleting note",
-      error
-    })
-  }
-}
-
-export const getSingleNoteController=async(req,res)=>{
-  try {
-    const {id}=req.params;
-    console.log('Received Id:', id);
-    const note =await userNotesModel.findOne({_id:id});
-    if(!note){
-      return res.status(404).send({
-            success:false,
-            message:"Note not found"
-      })
-    }
-    res.status(200).send({
-          success:true,
-          message:"Note fetched successfully",
-           note
-    })
-  } catch (error) {
-    console.log(error);
-    res.status(400).send({
-        success:false,
-        message:"Error while getting all notes",
-         error
-    })
-    
-  }
-}
-
-export const getAllNotesController = async (req, res) => {
-  try {
-    const notes = await userNotesModel.find({});
-    if (!notes || notes.length === 0) { 
+    const { id } = req.params;
+    const deleteNote = await userNotesModel.findByIdAndDelete(id);
+    if (!deleteNote) {
       return res.status(404).send({
         success: false,
-        message: "Notes not found"
+        message: "Note not found",
       });
     }
     res.status(200).send({
       success: true,
-      message: "Notes fetched successfully",
-      notes
+      message: "Note deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error while deleting note",
+      error,
+    });
+  }
+};
+
+export const getSingleNoteController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log("Received Id:", id);
+    const note = await userNotesModel.findOne({ _id: id });
+    if (!note) {
+      return res.status(404).send({
+        success: false,
+        message: "Note not found",
+      });
+    }
+    res.status(200).send({
+      success: true,
+      message: "Note fetched successfully",
+      note,
     });
   } catch (error) {
     console.log(error);
     res.status(400).send({
       success: false,
       message: "Error while getting all notes",
-      error
+      error,
+    });
+  }
+};
+
+export const getAllNotesController = async (req, res) => {
+  try {
+    const notes = await userNotesModel.find({});
+    if (!notes || notes.length === 0) {
+      return res.status(404).send({
+        success: false,
+        message: "Notes not found",
+      });
+    }
+    res.status(200).send({
+      success: true,
+      message: "Notes fetched successfully",
+      notes,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error while getting all notes",
+      error,
     });
   }
 };
