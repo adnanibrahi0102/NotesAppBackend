@@ -3,9 +3,11 @@ import connectToDatabase from './config/db.js';
 import authRoute from './routes/authRoute.js'
 import notesRoute from './routes/notesRoute.js'
 import dotenv from 'dotenv'
+import cors from 'cors'
 const app = express();
 
 const PORT=3000;
+app.use(cors())
 dotenv.config();
 //Database configuration
 connectToDatabase();
