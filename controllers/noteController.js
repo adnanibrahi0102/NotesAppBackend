@@ -5,8 +5,7 @@ export const createNoteController = async (req, res) => {
     if (!title || !content || !user) {
       return res.status(400).send({
         success: false,
-        message: "Please fill all the fields",
-        error,
+        message: "Please fill all the fields"
       });
     }
     const note = new userNotesModel({
@@ -29,6 +28,7 @@ export const createNoteController = async (req, res) => {
     });
   }
 };
+
 
 export const UpdateNoteController = async (req, res) => {
   try {

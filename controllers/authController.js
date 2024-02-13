@@ -73,7 +73,8 @@ export const loginController=async(req,res)=>{
         message:'Login successfully',
         user:{
             name:user.name,
-            email:user.email
+            email:user.email,
+            _id:user._id,
 
         },
         JWToken
