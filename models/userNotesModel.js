@@ -15,5 +15,5 @@ const userNotesSchema=mongoose.Schema({
         ref:"users",
         required:true
     }
-})
+},{ timestamps: true })
 export default mongoose.model('userNotes',userNotesSchema);

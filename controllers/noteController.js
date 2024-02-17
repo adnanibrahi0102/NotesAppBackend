@@ -119,7 +119,8 @@ export const getSingleNoteController = async (req, res) => {
 
 export const getAllNotesController = async (req, res) => {
   try {
-    const notes = await userNotesModel.find({});
+    const userId = req.params.userId;
+    const notes = await userNotesModel.find({ user: userId }).sort({ createdAt: -1 });
     if (!notes || notes.length === 0) {
       return res.status(404).send({
         success: false,

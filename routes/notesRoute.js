@@ -11,5 +11,5 @@ router.delete('/delete-note/:id',DeleteNoteController);
 //get single note route
 router.get('/getsingle-note/:id',getSingleNoteController);
 //get all notes route
-router.get('/getAll-Notes',getAllNotesController);
+router.get('/getAll-Notes/:userId',getAllNotesController);
 export default router;
