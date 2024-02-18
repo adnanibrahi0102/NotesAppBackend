@@ -121,12 +121,7 @@ export const getAllNotesController = async (req, res) => {
   try {
     const userId = req.params.userId;
     const notes = await userNotesModel.find({ user: userId }).sort({ createdAt: -1 });
-    if (!notes || notes.length === 0) {
-      return res.status(404).send({
-        success: false,
-        message: "Notes not found",
-      });
-    }
+  
     res.status(200).send({
       success: true,
       message: "Notes fetched successfully",
